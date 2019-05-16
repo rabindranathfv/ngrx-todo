@@ -7,7 +7,14 @@ import { AppComponent } from './app.component';
 // ngrx
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+// reducers
+import { todoReducer } from './todo-components/todo.reducer';
+
+// enviroments
 import { environment } from 'src/environments/environment';
+
+// components
 import { FooterComponent } from './footer/footer.component';
 import { TodoComponentsComponent } from './todo-components/todo-components.component';
 import { TodoListComponent } from './todo-components/todo-list/todo-list.component';
@@ -29,7 +36,7 @@ import { TodoAddComponent } from './todo-components/todo-add/todo-add.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // StoreModule.forRoot({ count: contadorReducer }),
+    StoreModule.forRoot({ todos: todoReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 100, // retains last 100 states
       logOnly: environment.production
