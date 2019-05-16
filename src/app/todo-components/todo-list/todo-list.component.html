@@ -1,3 +1,6 @@
 <ul class="todo-list">
-    <app-todo-item></app-todo-item>
+    <ng-container>
+        <app-todo-item *ngFor="let todo of todoList; let i=index" [todoItem]="todo"></app-todo-item>
+    </ng-container>
+
 </ul>
