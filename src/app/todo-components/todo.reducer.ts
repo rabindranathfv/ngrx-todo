@@ -32,7 +32,11 @@ export function todoReducer( state = stateInitial, action: fromTodo.Actions) {
                 } else {
                     return todoItem;
                 }
-            } );
+            });
+        case fromTodo.DELETE_TODO:
+                return state.filter( (todoItem) => {
+                    return todoItem.id !== action.id;
+                });
         default:
             return state;
     }
