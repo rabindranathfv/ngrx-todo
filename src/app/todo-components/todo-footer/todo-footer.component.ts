@@ -16,6 +16,7 @@ export class TodoFooterComponent implements OnInit {
   constructor( private store: Store<AppState>) {  }
 
   ngOnInit() {
+    this.getCurrentFilter();
   }
 
   /**
