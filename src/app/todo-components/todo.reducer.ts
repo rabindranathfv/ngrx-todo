@@ -21,6 +21,18 @@ export function todoReducer( state = stateInitial, action: fromTodo.Actions) {
                     return todoUpd;
                 }
             });
+        case fromTodo.UPDATE_TODO:
+            return state.map( (todoItem) => {
+                // console.log(' **** PROCESANDO UPDATE TODO EN EL REDUCER ***', todoItem);
+                if ( todoItem.id === action.id ) {
+                    return {
+                        ...todoItem,
+                        text: action.text
+                    };
+                } else {
+                    return todoItem;
+                }
+            } );
         default:
             return state;
     }
