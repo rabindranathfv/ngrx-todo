@@ -4,8 +4,8 @@
     <!-- Remove this if you don't implement routing -->
     <ul class="filters">
         <ng-container *ngFor="let filter of filtersValid">
-            <li>
-                <a class="selected" href="#/">{{ filter }}</a>
+            <li (click)="selectFilter( filter )">
+                <a [ngClass]="{'selected': filter == currentFilter }">{{ filter }}</a>
             </li>
         </ng-container>
     </ul>
