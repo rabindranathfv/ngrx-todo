@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
-
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
+
+import { ToggleAllTodoAction } from '../todo.actions';
+
 
 // actions
 import { AddTodoAction } from '../todo.actions';
@@ -39,6 +41,14 @@ export class TodoAddComponent implements OnInit {
     const action = new AddTodoAction( this.todoInput.value );
     this.store.dispatch( action );
     this.todoInput.setValue('');
+  }
+
+  /**
+   * toggleAll
+   */
+  public toggleAll() {
+    const actionToggleAll = new ToggleAllTodoAction( true );
+    this.store.dispatch( actionToggleAll);
   }
 
 }

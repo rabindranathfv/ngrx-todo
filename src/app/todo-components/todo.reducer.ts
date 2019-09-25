@@ -37,6 +37,13 @@ export function todoReducer( state = stateInitial, action: fromTodo.Actions) {
                 return state.filter( (todoItem) => {
                     return todoItem.id !== action.id;
                 });
+        case fromTodo.TOGGLE_ALL_TODO:
+            return state.map( (todoItem) => {
+                return {
+                    ...todoItem,
+                    completed: action.completed
+                };
+            });
         default:
             return state;
     }
