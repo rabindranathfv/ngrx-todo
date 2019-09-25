@@ -23,8 +23,8 @@ export function todoReducer( state = stateInitial, action: fromTodo.Actions) {
             });
         case fromTodo.UPDATE_TODO:
             return state.map( (todoItem) => {
-                // console.log(' **** PROCESANDO UPDATE TODO EN EL REDUCER ***', todoItem);
                 if ( todoItem.id === action.id ) {
+                    // console.log(' **** PROCESANDO UPDATE TODO EN EL REDUCER ***', todoItem);
                     return {
                         ...todoItem,
                         text: action.text

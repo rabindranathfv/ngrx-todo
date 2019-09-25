@@ -25,11 +25,7 @@ export class TodoItemComponent implements OnInit {
   ngOnInit() {
     console.log(this.todoItem);
     this.initEditForm();
-
-    this.checkField.valueChanges.subscribe( () => {
-      const action = new ToggleTodoAction( this.todoItem.id );
-      this.store.dispatch( action );
-    });
+    this.todoChecked();
   }
 
   public initEditForm() {
@@ -46,17 +42,31 @@ export class TodoItemComponent implements OnInit {
     setTimeout(() => {
       this.updateBtnTodoItem.nativeElement.select();
     }, 1);
+  }
 
+  /**
+   * todoCheck
+   */
+  public todoChecked() {
+    this.checkField.valueChanges.subscribe( () => {
+      const action = new ToggleTodoAction( this.todoItem.id );
+      this.store.dispatch( action );
+    });
   }
 
   /**
    * endUpdateTodo
    */
-  public endUpdateTodo(  ) {
-    console.log(this.todoInput.value);
+  public endUpdateTodo() {
 
-    const action = new UpdateTodoAction( this.todoItem.id, this.todoInput.value );
-    this.store.dispatch( action );
+    if (this.todoInput.invalid ) {
+      return;
+    }
+    if (this.todoInput.value === this.todoItem.text) {
+      return;
+    }
+    const actionUpdt = new UpdateTodoAction( this.todoItem.id, this.todoInput.value );
+    this.store.dispatch( actionUpdt );
     this.update = false;
   }
 

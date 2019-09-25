@@ -33,7 +33,7 @@ export class UpdateTodoAction implements Action {
     readonly type = UPDATE_TODO;
 
     constructor( public id: number, public text: string ) {
-        console.log(`id del TODO ${id} y cambio ${text}`);
+        // console.log(`id del TODO ${id} y cambio ${text}`);
     }
 }
 
