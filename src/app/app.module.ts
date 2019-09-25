@@ -10,7 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 // reducers
-import { todoReducer } from './todo-components/todo.reducer';
+import { appReducers } from './app.reducers';
 
 // enviroments
 import { environment } from 'src/environments/environment';
@@ -22,7 +22,6 @@ import { TodoListComponent } from './todo-components/todo-list/todo-list.compone
 import { TodoItemComponent } from './todo-components/todo-item/todo-item.component';
 import { TodoFooterComponent } from './todo-components/todo-footer/todo-footer.component';
 import { TodoAddComponent } from './todo-components/todo-add/todo-add.component';
-
 
 @NgModule({
   declarations: [
@@ -37,7 +36,7 @@ import { TodoAddComponent } from './todo-components/todo-add/todo-add.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ todos: todoReducer}),
+    StoreModule.forRoot( appReducers ),
     StoreDevtoolsModule.instrument({
       maxAge: 100, // retains last 100 states
       logOnly: environment.production
