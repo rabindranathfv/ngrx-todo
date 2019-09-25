@@ -20,6 +20,10 @@ export class TodoAddComponent implements OnInit {
   constructor( private store: Store<AppState>) { }
 
   ngOnInit() {
+    this.InitAddTodoForm();
+  }
+
+  public InitAddTodoForm() {
     this.todoInput = new FormControl('', Validators.required);
   }
 
