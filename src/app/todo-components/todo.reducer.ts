@@ -8,9 +8,19 @@ const stateInitial: Todo[] = [todo1, todo2];
 export function todoReducer( state = stateInitial, action: fromTodo.Actions) {
     switch ( action.type ) {
         case fromTodo.ADD_TODO:
-            const todo = new Todo( action.text);
+            const todo = new Todo( action.text );
             return [...state, todo ];
-
+        case fromTodo.TOGGLE_TODO:
+            return state.map( todoUpd => {
+                if ( todoUpd.id === action.id) {
+                    return {
+                        ...todoUpd,
+                        completed: !todoUpd.completed
+                    };
+                } else {
+                    return todoUpd;
+                }
+            });
         default:
             return state;
     }

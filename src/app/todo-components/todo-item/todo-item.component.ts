@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Todo } from 'src/app/models/todo.model';
 import { FormControl, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducers';
+import { ToggleTodoAction } from '../todo.actions';
+
 
 @Component({
   selector: 'app-todo-item',
@@ -16,11 +20,16 @@ export class TodoItemComponent implements OnInit {
 
   update: boolean;
 
-  constructor() { }
+  constructor( private store: Store<AppState>) { }
 
   ngOnInit() {
     console.log(this.todoItem);
     this.initEditForm();
+
+    this.checkField.valueChanges.subscribe( () => {
+      const action = new ToggleTodoAction( this.todoItem.id );
+      this.store.dispatch( action );
+    });
   }
 
   public initEditForm() {
