@@ -12,11 +12,13 @@ export class TodoFooterComponent implements OnInit {
 
   public filtersValid: fromFilters.filterValid [] = ['todos', 'completados', 'pendientes'];
   public currentFilter: fromFilters.filterValid;
+  public pendings: number;
 
   constructor( private store: Store<AppState>) {  }
 
   ngOnInit() {
     this.getCurrentFilter();
+    this.getPendings();
   }
 
   /**
@@ -35,6 +37,13 @@ export class TodoFooterComponent implements OnInit {
     this.store.subscribe( (state) => {
       console.log(state);
       this.currentFilter = state.filter;
+    });
+  }
+
+  public getPendings() {
+    this.store.subscribe( (state) => {
+      this.pendings = state.todos.filter( (item) => !item.completed).length;
+      console.log(this.pendings);
     });
   }
 
