@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as fromFilters from '../../filter/filter.actions';
+import * as fromTodo from '../todo.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 
@@ -13,6 +14,7 @@ export class TodoFooterComponent implements OnInit {
   public filtersValid: fromFilters.filterValid [] = ['todos', 'completados', 'pendientes'];
   public currentFilter: fromFilters.filterValid;
   public pendings: number;
+
 
   constructor( private store: Store<AppState>) {  }
 
@@ -45,6 +47,14 @@ export class TodoFooterComponent implements OnInit {
       this.pendings = state.todos.filter( (item) => !item.completed).length;
       console.log(this.pendings);
     });
+  }
+
+  /**
+   * deleteCompleted
+   */
+  public deleteCompleted() {
+    const actionDeleteAll = new fromTodo.DeleteAllTodoAction();
+    this.store.dispatch( actionDeleteAll );
   }
 
 }

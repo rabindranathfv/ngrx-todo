@@ -8,8 +8,6 @@ import { Todo } from '../models/todo.model';
 export class FilterTodoPipe implements PipeTransform {
 
   transform(todos: Todo[], filter: fromFilter.filterValid): Todo[] {
-    console.log(todos);
-    console.log(filter);
     if (filter === 'completados') {
       return todos.filter( todo => todo.completed);
     } else if (filter === 'pendientes') {

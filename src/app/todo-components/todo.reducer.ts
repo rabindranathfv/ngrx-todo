@@ -34,9 +34,13 @@ export function todoReducer( state = stateInitial, action: fromTodo.Actions) {
                 }
             });
         case fromTodo.DELETE_TODO:
-                return state.filter( (todoItem) => {
-                    return todoItem.id !== action.id;
-                });
+            return state.filter( (todoItem) => {
+                return todoItem.id !== action.id;
+            });
+        case fromTodo.DELETE_ALL_TODO:
+            return state.filter( (todoItem) => {
+                return !todoItem.completed;
+            });
         case fromTodo.TOGGLE_ALL_TODO:
             return state.map( (todoItem) => {
                 return {
